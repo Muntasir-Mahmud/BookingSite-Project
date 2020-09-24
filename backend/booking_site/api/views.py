@@ -1,12 +1,14 @@
 from rest_framework import status
 from rest_framework.response import Response
-from rest_framework import generics
+from rest_framework import generics, permissions, authentication
 
 from .models import Hotel
 from .serializers import HotelSerializer
 
 
 class HotelList(generics.ListCreateAPIView):
+    permission_classes = (permissions.IsAuthenticated,)
+    authentication_classes = (authentication.TokenAuthentication,)
     queryset = Hotel.objects.all()
     serializer_class = HotelSerializer
 
@@ -18,6 +20,9 @@ class HotelList(generics.ListCreateAPIView):
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
 class HotelDetail(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = (permissions.IsAuthenticated,)
+    authentication_classes = (authentication.TokenAuthentication,)
     queryset = Hotel.objects.all()
     serializer_class = HotelSerializer
