@@ -4,6 +4,7 @@ from rest_framework import generics, permissions, authentication
 
 from .models import Hotel
 from .serializers import HotelSerializer
+from .pagination import CustomPagination
 
 
 class HotelList(generics.ListCreateAPIView):
@@ -11,6 +12,7 @@ class HotelList(generics.ListCreateAPIView):
     authentication_classes = (authentication.TokenAuthentication,)
     queryset = Hotel.objects.all()
     serializer_class = HotelSerializer
+    pagination_class = CustomPagination
 
     def post(self, request, format=None):
         serializer = HotelSerializer(data=request.data)

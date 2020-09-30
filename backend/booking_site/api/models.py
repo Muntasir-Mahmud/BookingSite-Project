@@ -51,8 +51,9 @@ class Hotel(models.Model):
     Name = models.CharField(max_length=255)
     image = models.ImageField(null=True, upload_to=image_file_path)
     description = models.TextField()
-    contact_no = models.IntegerField() # Change to string field
-    rating = models.IntegerField() # change to float field
+    contact_no = models.CharField(max_length=20)
+    address = models.CharField(max_length=255, default='Dhaka')
+    rating = models.FloatField(max_length=10)
 
     def __str__(self):
         return self.Name
