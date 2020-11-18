@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'allauth',
     'allauth.account',
+    'drf_yasg2',
 
     #local app
     'api',
@@ -161,3 +162,12 @@ ACCOUNT_AUTHENTICATION_METHOD = 'email'
 
 SITE_ID = 1
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+REST_AUTH_SERIALIZERS = {
+    "LOGIN_SERIALIZER": "api.serializers.CustomLoginSerializer",
+    "USER_DETAILS_SERIALIZER": "api.serializers.CustomUserDetailsSerializer",
+}
+
+REST_AUTH_REGISTER_SERIALIZERS = {
+    "REGISTER_SERIALIZER": "api.serializers.CustomRegisterSerializer",
+}
